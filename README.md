@@ -68,8 +68,12 @@ Files/classes shown here are not fully yet developed and may be changed in the f
 
 Youtube link: 
 
-# Workload for stage 1: ( add yours )
+# Workload for stage 1: ( )
 
 Šarūnas Gromavičius:
 1. Spent ~120minutes to come up with the story.
 2. Spent ~40minutes to have a ready document with information about the project.
+
+Mantas Lamauskas:
+1. Spent ~20minutes creating the project and classes.
+2. Spent ~140minutes to create PDF file.
