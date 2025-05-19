@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// A panel to show the title because we needed a whole class just for that.
+// A panel to show the title.
 public class TitlePanel extends JPanel {
 
     private String titleText = "You";
@@ -28,7 +28,6 @@ public class TitlePanel extends JPanel {
                 if (keyPressed) return;
                 keyPressed = true;
 
-                // Use the SceneManager callback instead of System.exit
                 if (TitlePanel.this.listener != null) {
                     TitlePanel.this.listener.onSceneFinished();
                 }
@@ -50,7 +49,7 @@ public class TitlePanel extends JPanel {
         });
     }
 
-// Paints the component with more fade effects because we're obsessed.
+// Paints the component.
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
