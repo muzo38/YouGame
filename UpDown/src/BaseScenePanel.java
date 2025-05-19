@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// The abstract base for all scene panels that forces me to write more boilerplate code.
+// The abstract base for all scene panels.
 public abstract class BaseScenePanel extends JPanel {
 
     protected SceneListener listener;
@@ -14,7 +14,7 @@ public abstract class BaseScenePanel extends JPanel {
     private Timer titleFadeTimer;
     private int titlePhase = 0;
 
-// Constructor that demands way too many parameters for something so simple.
+// Constructor.
     public BaseScenePanel(SceneListener listener, String sceneTitle) {
         this.listener = listener;
         this.sceneTitle = sceneTitle;
@@ -68,7 +68,6 @@ public abstract class BaseScenePanel extends JPanel {
         });
     }
 
-// Override this method so I can force you to implement this functionality, even if you don't need it.
     protected void onTitleFadeComplete() {
         // Default: do nothing
     }
@@ -97,6 +96,5 @@ public abstract class BaseScenePanel extends JPanel {
         g2d.dispose();
     }
 
-// Abstract method that forces you to implement the actual scene painting logic.
     protected abstract void paintScene(Graphics2D g2d);
 }
