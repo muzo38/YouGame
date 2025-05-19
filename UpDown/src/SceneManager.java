@@ -3,7 +3,7 @@
 
 import javax.swing.SwingUtilities;
 
-// A manager that just repeats the same boring initialization code for each damn scene.
+// A manager that just repeats the same initialization code for each scene.
 public class SceneManager {
 
     private GameWindow window;
@@ -47,7 +47,7 @@ public class SceneManager {
         SwingUtilities.invokeLater(() -> sceneTwo.requestFocusInWindow());
     }
 
-// Shows scene three, the plot thickens.
+// Shows scene three, the plot get interesting.
     public void showSceneThree() {
         SceneThreePanel sceneThree = new SceneThreePanel(() -> {
             showSceneFour();
@@ -69,7 +69,7 @@ public class SceneManager {
         SwingUtilities.invokeLater(() -> sceneFour.requestFocusInWindow());
     }
 
-// Shows scene five, because we can't just end at a nice even number.
+// Shows scene five.
     public void showSceneFive() {
         SceneFivePanel sceneFive = new SceneFivePanel(() -> {
             showSceneSix();
@@ -80,7 +80,7 @@ public class SceneManager {
         SwingUtilities.invokeLater(() -> sceneFive.requestFocusInWindow());
     }
 
-// Shows scene six, finally the last one!
+// Shows scene six, the last one!
     public void showSceneSix() {
         SceneSixPanel sceneSix = new SceneSixPanel(() -> {
             showTitle(); // go back to title.
