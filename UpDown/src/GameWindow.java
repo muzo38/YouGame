@@ -3,11 +3,10 @@
 
 import javax.swing.*;
 
-// A glorified container that does almost nothing but takes credit for everything.
+// A container that does almost nothing but takes credit for everything.
 public class GameWindow extends JFrame {
 
 
-// Constructor that does the bare minimum it can get away with.
     public GameWindow() {
         setTitle("You");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
