@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
-// A massive class that tries to handle everything about story scenes because I hate modular code.
+// A massive class that tries to handle everything about story scenes.
 public abstract class StoryScenePanel extends BaseScenePanel {
 
     private SceneMoment[] moments;
@@ -27,13 +27,12 @@ public abstract class StoryScenePanel extends BaseScenePanel {
 
     private Graphics cachedGraphics;
 
-// Constructor that takes more parameters than I wanted to type.
     public StoryScenePanel(SceneListener listener, String sceneTitle, SceneMoment[] moments) {
         super(listener, sceneTitle);
         this.moments = moments;
     }
 
-// Returns active moments because we need to overcomplicate everything.
+// Returns active moments because we need to overcomplicate everything for future features...
     private SceneMoment[] getActiveMoments() {
         return overrideMoments != null ? overrideMoments : moments;
     }
@@ -89,7 +88,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         }
     }
 
-// Starts the story fade in animation because static text isn't dramatic enough.
+// Starts the story fade in animation.
     protected void startStoryFadeIn() {
         storyFadeTimer = new Timer(50, e -> {
             storyAlpha += 0.02f;
@@ -106,7 +105,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         storyFadeTimer.start();
     }
 
-// Starts the continue prompt fade in because one fade animation wasn't enough.
+// Starts the continue prompt fade.
     private void startContinueFadeIn() {
         showingContinue = true;
         continueFadeTimer = new Timer(50, e -> {
@@ -120,7 +119,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         continueFadeTimer.start();
     }
 
-// Paints the scene with too many conditional statements.
+// Paints the scene.
     @Override
     protected void paintScene(Graphics2D g2d) {
         this.cachedGraphics = g2d;
@@ -178,7 +177,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
     private void startChoiceFadeIn() {
         showingChoices = true;
         showingContinue = false;
-        showingStory = false; // 👈 Hide the story block
+        showingStory = false; // Hide the story block
         choiceAlpha = 0f;
 
         choiceFadeTimer = new Timer(50, e -> {
@@ -193,7 +192,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         choiceFadeTimer.start();
     }
 
-// Called when a choice is made but I'll probably override it anyway.
+// Called when a choice is made, overrided anyway.
     protected void onChoiceMade(String choice) {
         System.out.println("User chose: " + choice);
 
@@ -203,7 +202,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         }
     }
 
-// Checks if the prompt was clicked with unnecessarily complex math.
+// Checks if the prompt was clicked.
     private boolean isPromptClicked(MouseEvent e) {
         SceneMoment moment = getActiveMoments()[currentBlock];
         if (moment.continuationPrompt == null) return false;
@@ -214,7 +213,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         return bounds.contains(e.getX(), e.getY());
     }
 
-// Called when the title fade is complete because we can't just do everything at once.
+// Called when the title fade is complete because we can't just do everything at once haha
     @Override
     protected void onTitleFadeComplete() {
         startStoryFadeIn();
