@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
 
-// A utility class with static methods because I couldn't be bothered to implement proper design patterns.
+// A utility class with static methods.
 public class SceneToolkit {
 
 // Fades in text because regular text isn't fancy enough.
@@ -16,7 +16,7 @@ public class SceneToolkit {
         g2d.drawString(text, x, y);
     }
 
-// Centers text because calculating the center ourselves is too much work.
+// Centers text
     public static void drawCenteredText(Graphics2D g2d, String text, Font font, Color color, int panelWidth, int y) {
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         g2d.setFont(font);
@@ -26,7 +26,7 @@ public class SceneToolkit {
         g2d.drawString(text, x, y);
     }
 
-// Fades in story text with a bunch of pointless calculations.
+// Fades in story text.
     public static void fadeInStoryText(Graphics2D g2d, String storyText, Font font, Color color, float alpha, int panelWidth, int panelHeight) {
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, clampAlpha(alpha)));
         g2d.setFont(font);
@@ -77,7 +77,7 @@ public class SceneToolkit {
         return lines;
     }
 
-// Clamps alpha between 0 and 1 because apparently that's too hard to remember.
+// Clamps alpha between 0 and 1
     private static float clampAlpha(float alpha) {
         return Math.max(0f, Math.min(alpha, 1f));
     }
@@ -96,7 +96,7 @@ public class SceneToolkit {
         g2d.drawString(title, x, y);
     }
 
-// Draws text that's supposed to be clickable but looks exactly the same.
+// Draws text that's supposed to be clickable.
     public static void drawClickableText(Graphics2D g2d, String text, Font font, Color color, float alpha, int panelWidth, int y) {
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, clampAlpha(alpha)));
         g2d.setFont(font);
@@ -109,7 +109,7 @@ public class SceneToolkit {
         g2d.drawLine(x, y + 2, x + metrics.stringWidth(text), y + 2); // underline
     }
 
-// Draws choices side by side because apparently layouts are too advanced.
+// Draws choices side by side
     public static void drawSideBySideChoices(Graphics2D g2d, String leftText, String rightText, Font font, Color color, float alpha, int panelWidth, int y) {
         g2d.setFont(font);
         FontMetrics fm = g2d.getFontMetrics(font);
