@@ -33,7 +33,7 @@ public abstract class BaseScenePanel extends JPanel {
         setupTitleFade();
     }
 
-// Sets up the annoying fade animation that took me way too long to implement.
+// Sets up the annoying fade animation that took too long to implement.
     private void setupTitleFade() {
         titleFadeTimer = new Timer(50, e -> {
             switch (titlePhase) {
