@@ -77,3 +77,10 @@ Youtube link:
 Mantas Lamauskas:
 1. Spent ~20minutes creating the project and classes.
 2. Spent ~140minutes to create PDF file.
+
+# Workload for stage 2:
+
+Šarūnas Gromavičius:
+1. Spent ~180minutes coding a simple engine for the game.
+2. Spent ~60minutes integrating the story into the code.
+3. Spent ~20minutes discussing with the team about features.
