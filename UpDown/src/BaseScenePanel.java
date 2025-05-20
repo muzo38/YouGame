@@ -72,7 +72,7 @@ public abstract class BaseScenePanel extends JPanel {
         // Default: do nothing
     }
 
-// Painting method that I wish I didn't have to override every damn time.
+// Painting method
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
