@@ -84,3 +84,8 @@ Mantas Lamauskas:
 1. Spent ~180minutes coding a simple engine for the game.
 2. Spent ~60minutes integrating the story into the code.
 3. Spent ~20minutes discussing with the team about features.
+
+Mantas Lamauskas:
+1. Spent ~100minutes coding and testing.
+2. Spent ~140minutes to create PDF file.
+3. Spent ~20minutes discussing with the team about features.
