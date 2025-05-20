@@ -3,7 +3,6 @@
 
 import javax.swing.*;
 
-// A container that does almost nothing but takes credit for everything.
 public class GameWindow extends JFrame {
 
 
