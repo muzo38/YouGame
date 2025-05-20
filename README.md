@@ -29,7 +29,7 @@ it to be hard-hitting, emotional and something to think about before deciding on
 3. Have a working escape button to close the game!
 4. Need for a text block for helping the user write his name.
 
-# Activities: ( ↓ TODO: A DIAGRAM OF THIS ↓ )
+# Activities:
 
 1. User launches the game.
 2. Escape button is always available to close the game!
@@ -53,7 +53,7 @@ IDE: VSCODE
 For graphical display we use Java Swing, which is a built in library. ( <- specify the version too )
 Anything else you think is needed here...
 
-# Files/classes ( maybe include this? )
+# Files/classes ( OUTDATED )
 
 Files/classes shown here are not fully yet developed and may be changed in the future.
 
