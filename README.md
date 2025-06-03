@@ -101,3 +101,8 @@ Didnt do: Sound design and fast skip :(
 2. Spent ~120minutes creating and editing the textures.
 3. Spent ~120minutes recording and editing all the demo videos.
 4. Spent ~30minutes playtesting and getting feedback from other people.
+
+Mantas Lamauskas:
+1. Spent ~120minutes recording the videos.
+2. Spent ~150minutes creating the graphics for the scenes.
+3. Spent ~30minutes fixing the fonts.
