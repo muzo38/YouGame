@@ -104,5 +104,5 @@ Didnt do: Sound design and fast skip :(
 
 Mantas Lamauskas:
 1. Spent ~120minutes recording the videos.
-2. Spent ~150minutes creating the graphics for the scenes.
-3. Spent ~30minutes fixing the fonts.
+2. Spent ~150minutes creating support for graphics in the code.
+3. Spent ~30minutes unify the fonts.
