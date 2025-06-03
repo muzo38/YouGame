@@ -89,3 +89,11 @@ Mantas Lamauskas:
 1. Spent ~100minutes coding and testing.
 2. Spent ~140minutes to create PDF file.
 3. Spent ~20minutes discussing with the team about features.
+
+# Workload for stage 3:
+
+Šarūnas Gromavičius:
+1. Spent ~30minutes expirementing with game textures.
+2. Spent ~120minutes creating and editing the textures.
+3. Spent ~120minutes recording and editing all the demo videos.
+4. Spent ~30minutes playtesting and getting feedback from other people.
