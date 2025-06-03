@@ -92,7 +92,7 @@ Mantas Lamauskas:
 
 
 Did do: implement the graphics
-Didnt do: interactive mouse sentence prompts and sound.
+Didnt do: Sound design and fast skip :(
 
 # Workload for stage 3:
 
