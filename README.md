@@ -90,6 +90,10 @@ Mantas Lamauskas:
 2. Spent ~140minutes to create PDF file.
 3. Spent ~20minutes discussing with the team about features.
 
+
+Did do: implement the graphics
+Didnt do: interactive mouse sentence prompts and sound.
+
 # Workload for stage 3:
 
 Šarūnas Gromavičius:
