@@ -30,6 +30,8 @@ public abstract class StoryScenePanel extends BaseScenePanel {
     private static final int CLICK_DELAY_MS = 300;
     private long lastClickTime = 0;
 
+    protected String clickSoundPath = "/assets/sound/click.wav";
+
     private Timer storyFadeTimer;
     private Timer continueFadeTimer;
 
@@ -52,6 +54,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         this.moments = moments;
         this.backgroundAlpha = 0f;
         this.backgroundFadedIn = false;
+        setClickSound(clickSoundPath);
     }
 
     private SceneMoment[] getActiveMoments() {
