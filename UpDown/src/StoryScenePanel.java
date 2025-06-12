@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+
+// audio utility
 import javax.swing.*;
 
 public abstract class StoryScenePanel extends BaseScenePanel {
@@ -28,6 +30,8 @@ public abstract class StoryScenePanel extends BaseScenePanel {
     private static final int CLICK_DELAY_MS = 300;
     private long lastClickTime = 0;
 
+    protected String clickSoundPath = "/assets/sound/click.wav";
+
     private Timer storyFadeTimer;
     private Timer continueFadeTimer;
 
@@ -43,12 +47,14 @@ public abstract class StoryScenePanel extends BaseScenePanel {
     private float backgroundAlpha = 0f;
     private Timer backgroundFadeTimer;
     private boolean backgroundFadedIn = false;
+    private String currentMusicPath = null;
 
     public StoryScenePanel(SceneListener listener, String sceneTitle, SceneMoment[] moments) {
         super(listener, sceneTitle);
         this.moments = moments;
         this.backgroundAlpha = 0f;
         this.backgroundFadedIn = false;
+        setClickSound(clickSoundPath);
     }
 
     private SceneMoment[] getActiveMoments() {
@@ -70,6 +76,19 @@ public abstract class StoryScenePanel extends BaseScenePanel {
 
         if (!backgroundFadedIn) {
             startBackgroundFadeIn();
+        }
+
+        updateMusic();
+    }
+
+    private void updateMusic() {
+        SceneMoment moment = getActiveMoments()[currentBlock];
+        if (moment.ambientMusicPath != null && !moment.ambientMusicPath.equals(currentMusicPath)) {
+            currentMusicPath = moment.ambientMusicPath;
+            SoundManager.playMusicLoop(currentMusicPath);
+        } else if (moment.ambientMusicPath == null && currentMusicPath != null) {
+            currentMusicPath = null;
+            SoundManager.stopMusic();
         }
     }
 

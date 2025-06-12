@@ -18,7 +18,7 @@ public class SceneManager {
     public void showTitle() {
     TitlePanel titlePanel = new TitlePanel(() -> {
         showSceneOne();
-    }, "/assets/images/title_bg.png");
+    }, "/assets/images/title_bg.png", "/assets/sound/title_music.wav");
     
     window.setContentPane(titlePanel);
     window.revalidate();
