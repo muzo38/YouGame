@@ -66,15 +66,17 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         
         if (moment.backgroundImagePath != null && !moment.backgroundImagePath.equals(currentBackgroundImagePath)) {
             currentBackgroundImagePath = moment.backgroundImagePath;
-            
+
             try {
                 backgroundImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource(currentBackgroundImagePath));
             } catch (Exception e) {
                 backgroundImage = null;
             }
-        }
 
-        if (!backgroundFadedIn) {
+            backgroundFadedIn = false;
+            backgroundAlpha = 0f;
+            startBackgroundFadeIn();
+        } else if (!backgroundFadedIn) {
             startBackgroundFadeIn();
         }
 
