@@ -5,10 +5,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+// audio utility
+
 public abstract class BaseScenePanel extends JPanel {
 
     protected SceneListener listener;
     protected String sceneTitle;
+
+    protected String titleSfxPath = "/assets/sound/title_sfx.wav";
 
     protected float titleAlpha = 0f;
     private Timer titleFadeTimer;
@@ -20,6 +24,8 @@ public abstract class BaseScenePanel extends JPanel {
 
         setBackground(Color.BLACK);
         setFocusable(true);
+
+        SoundManager.stopMusic();
         setupKeyBindings();
         setupTitleFade();
     }
@@ -39,6 +45,7 @@ public abstract class BaseScenePanel extends JPanel {
         titleFadeTimer = new Timer(50, e -> handleTitleFadeStep());
         SwingUtilities.invokeLater(() -> {
             requestFocusInWindow();
+            SoundManager.playEffect(titleSfxPath);
             titleFadeTimer.start();
         });
     }

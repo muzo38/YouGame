@@ -5,12 +5,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+// project audio utility
+
 public class TitlePanel extends JPanel {
 
     private String titleText = "You";
     private String promptText = "Press any key.";
     private String backgroundImagePath;
     private Image backgroundImage;
+    private String musicPath;
 
     private float alpha = 0f;
     private Timer fadeInTimer;
@@ -18,9 +21,10 @@ public class TitlePanel extends JPanel {
 
     private SceneListener listener;
 
-    public TitlePanel(SceneListener listener, String backgroundImagePath) {
+    public TitlePanel(SceneListener listener, String backgroundImagePath, String musicPath) {
         this.listener = listener;
         this.backgroundImagePath = backgroundImagePath;
+        this.musicPath = musicPath;
 
         setBackground(Color.BLACK);
         setFocusable(true);
@@ -28,6 +32,7 @@ public class TitlePanel extends JPanel {
         loadBackgroundImage();
         setupKeyListener();
         startFadeIn();
+        SoundManager.playMusicLoop(musicPath);
     }
 
     private void loadBackgroundImage() {
@@ -46,6 +51,7 @@ public class TitlePanel extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if (!keyPressed) {
                     keyPressed = true;
+                    SoundManager.stopMusic();
                     if (listener != null) {
                         listener.onSceneFinished();
                     }

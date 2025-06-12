@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+
+// audio utility
 import javax.swing.*;
 
 public abstract class StoryScenePanel extends BaseScenePanel {
@@ -43,6 +45,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
     private float backgroundAlpha = 0f;
     private Timer backgroundFadeTimer;
     private boolean backgroundFadedIn = false;
+    private String currentMusicPath = null;
 
     public StoryScenePanel(SceneListener listener, String sceneTitle, SceneMoment[] moments) {
         super(listener, sceneTitle);
@@ -70,6 +73,19 @@ public abstract class StoryScenePanel extends BaseScenePanel {
 
         if (!backgroundFadedIn) {
             startBackgroundFadeIn();
+        }
+
+        updateMusic();
+    }
+
+    private void updateMusic() {
+        SceneMoment moment = getActiveMoments()[currentBlock];
+        if (moment.ambientMusicPath != null && !moment.ambientMusicPath.equals(currentMusicPath)) {
+            currentMusicPath = moment.ambientMusicPath;
+            SoundManager.playMusicLoop(currentMusicPath);
+        } else if (moment.ambientMusicPath == null && currentMusicPath != null) {
+            currentMusicPath = null;
+            SoundManager.stopMusic();
         }
     }
 
