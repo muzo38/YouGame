@@ -33,6 +33,7 @@ public class SceneManager {
             showSceneTwo();
         });
         window.setContentPane(sceneOne);
+        SoundManager.playEffect("/assets/sound/title_sfx.wav");
         window.revalidate();
 
         SwingUtilities.invokeLater(() -> sceneOne.requestFocusInWindow());
@@ -44,6 +45,7 @@ public class SceneManager {
             showSceneThree();
         });
         window.setContentPane(sceneTwo);
+        SoundManager.playEffect("/assets/sound/title_sfx.wav");
         window.revalidate();
 
         SwingUtilities.invokeLater(() -> sceneTwo.requestFocusInWindow());
@@ -55,6 +57,7 @@ public class SceneManager {
             showSceneFour();
         });
         window.setContentPane(sceneThree);
+        SoundManager.playEffect("/assets/sound/title_sfx.wav");
         window.revalidate();
 
         SwingUtilities.invokeLater(() -> sceneThree.requestFocusInWindow());
@@ -66,6 +69,7 @@ public class SceneManager {
             showSceneFive();
         });
         window.setContentPane(sceneFour);
+        SoundManager.playEffect("/assets/sound/title_sfx.wav");
         window.revalidate();
 
         SwingUtilities.invokeLater(() -> sceneFour.requestFocusInWindow());
@@ -77,6 +81,7 @@ public class SceneManager {
             showSceneSix();
         });
         window.setContentPane(sceneFive);
+        SoundManager.playEffect("/assets/sound/title_sfx.wav");
         window.revalidate();
 
         SwingUtilities.invokeLater(() -> sceneFive.requestFocusInWindow());
@@ -88,6 +93,7 @@ public class SceneManager {
             showTitle(); // go back to title.
         });
         window.setContentPane(sceneSix);
+        SoundManager.playEffect("/assets/sound/title_sfx.wav");
         window.revalidate();
 
         SwingUtilities.invokeLater(() -> sceneSix.requestFocusInWindow());
