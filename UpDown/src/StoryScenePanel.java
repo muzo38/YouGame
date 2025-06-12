@@ -250,6 +250,16 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         }
     }
 
+    protected void resetAfterChoice() {
+        currentBlock = 0;
+        showingChoices = false;
+        showingContinue = false;
+        showingStory = true;
+        storyAlpha = 0f;
+        repaint();
+        startStoryFadeIn();
+    }
+
     private boolean isPromptClicked(MouseEvent e) {
         SceneMoment moment = getActiveMoments()[currentBlock];
         if (moment.continuationPrompt == null) return false;

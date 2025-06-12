@@ -71,12 +71,6 @@ public class SceneFourPanel extends StoryScenePanel {
             };
         }
 
-        currentBlock = 0;
-        showingChoices = false;
-        showingContinue = false;
-        showingStory = true;
-        storyAlpha = 0f;
-        repaint();
-        startStoryFadeIn();
+        resetAfterChoice();
     }
 }
