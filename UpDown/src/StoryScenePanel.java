@@ -29,9 +29,15 @@ public abstract class StoryScenePanel extends BaseScenePanel {
     private String currentBackgroundImagePath = null;
     private Image backgroundImage = null;
 
+    private float backgroundAlpha = 0f;
+    private Timer backgroundFadeTimer;
+    private boolean backgroundFadedIn = false;
+
     public StoryScenePanel(SceneListener listener, String sceneTitle, SceneMoment[] moments) {
         super(listener, sceneTitle);
         this.moments = moments;
+        this.backgroundAlpha = 0f;
+        this.backgroundFadedIn = false;
     }
 
     private SceneMoment[] getActiveMoments() {
@@ -50,6 +56,10 @@ public abstract class StoryScenePanel extends BaseScenePanel {
                 backgroundImage = null;
             }
         }
+
+        if (!backgroundFadedIn) {
+            startBackgroundFadeIn();
+        }
     }
 
     @Override
@@ -61,7 +71,10 @@ public abstract class StoryScenePanel extends BaseScenePanel {
                              RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         if (backgroundImage != null) {
+            Composite originalComposite = g2d.getComposite();
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, backgroundAlpha));
             g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            g2d.setComposite(originalComposite);
         }
 
         if (sceneTitle != null && !sceneTitle.isEmpty()) {
@@ -144,7 +157,6 @@ public abstract class StoryScenePanel extends BaseScenePanel {
 
     protected void startStoryFadeIn() {
         SceneMoment moment = getActiveMoments()[currentBlock];
-        loadBackgroundImage();
 
         storyFadeTimer = new Timer(50, e -> {
             storyAlpha += 0.02f;
@@ -173,6 +185,20 @@ public abstract class StoryScenePanel extends BaseScenePanel {
             repaint();
         });
         continueFadeTimer.start();
+    }
+
+    private void startBackgroundFadeIn() {
+        backgroundAlpha = 0f;
+        backgroundFadeTimer = new Timer(50, e -> {
+            backgroundAlpha += 0.03f;
+            if (backgroundAlpha >= 1f) {
+                backgroundAlpha = 1f;
+                backgroundFadeTimer.stop();
+                backgroundFadedIn = true;
+            }
+            repaint();
+        });
+        backgroundFadeTimer.start();
     }
 
     protected void paintScene(Graphics2D g2d) {
@@ -256,6 +282,7 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         showingContinue = false;
         showingStory = true;
         storyAlpha = 0f;
+        loadBackgroundImage();
         repaint();
         startStoryFadeIn();
     }
