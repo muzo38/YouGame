@@ -68,8 +68,13 @@ public class SceneToolkit {
         }
 
         public static void clickableText(Graphics2D g2d, String text, Font font, Color color, float alpha, int panelWidth, int y) {
-            applyFade(g2d, font, color, alpha);
-            FontMetrics metrics = g2d.getFontMetrics(font);
+            clickableText(g2d, text, font, color, alpha, panelWidth, y, false);
+        }
+
+        public static void clickableText(Graphics2D g2d, String text, Font font, Color color, float alpha, int panelWidth, int y, boolean hovered) {
+            Font drawFont = hovered ? font.deriveFont((float)font.getSize() + 4) : font;
+            applyFade(g2d, drawFont, color, alpha);
+            FontMetrics metrics = g2d.getFontMetrics(drawFont);
             int x = (panelWidth - metrics.stringWidth(text)) / 2;
 
             g2d.drawString(text, x, y);

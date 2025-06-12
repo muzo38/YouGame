@@ -4,6 +4,11 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.Toolkit;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public abstract class StoryScenePanel extends BaseScenePanel {
@@ -16,6 +21,12 @@ public abstract class StoryScenePanel extends BaseScenePanel {
     private float continueAlpha = 0f;
     protected boolean showingContinue = false;
     protected boolean showingStory = true;
+
+    private boolean promptHovered = false;
+
+    private Clip clickSoundClip = null;
+    private static final int CLICK_DELAY_MS = 300;
+    private long lastClickTime = 0;
 
     private Timer storyFadeTimer;
     private Timer continueFadeTimer;
@@ -94,6 +105,13 @@ public abstract class StoryScenePanel extends BaseScenePanel {
     }
 
     public void mouseClicked(MouseEvent e) {
+        if (e.getButton() != MouseEvent.BUTTON1) return;
+
+        long now = System.currentTimeMillis();
+        if (now - lastClickTime < CLICK_DELAY_MS) return;
+        lastClickTime = now;
+
+        playClickSound();
         if (showingContinue) {
             if (!isPromptClicked(e)) return;
 
@@ -225,7 +243,8 @@ public abstract class StoryScenePanel extends BaseScenePanel {
                 Color.WHITE,
                 continueAlpha,
                 getWidth(),
-                getHeight() - 400
+                getHeight() - 400,
+                promptHovered
             );
         }
 
@@ -291,15 +310,56 @@ public abstract class StoryScenePanel extends BaseScenePanel {
         SceneMoment moment = getActiveMoments()[currentBlock];
         if (moment.continuationPrompt == null) return false;
 
-        Rectangle bounds = SceneToolkit.Measure.getCenteredTextBounds(
+        return getPromptBounds().contains(e.getX(), e.getY());
+    }
+
+    private Rectangle getPromptBounds() {
+        SceneMoment moment = getActiveMoments()[currentBlock];
+        if (moment.continuationPrompt == null) return new Rectangle();
+
+        Font font = promptHovered
+            ? FontManager.CONTINUE_FONT.deriveFont((float)FontManager.CONTINUE_FONT.getSize() + 4)
+            : FontManager.CONTINUE_FONT;
+
+        return SceneToolkit.Measure.getCenteredTextBounds(
             getGraphics(),
             moment.continuationPrompt,
-            FontManager.CONTINUE_FONT,
+            font,
             getWidth() / 2,
             getHeight() - 400
         );
+    }
 
-        return bounds.contains(e.getX(), e.getY());
+    protected void setClickSound(String resourcePath) {
+        try {
+            AudioInputStream in = AudioSystem.getAudioInputStream(
+                getClass().getResource(resourcePath)
+            );
+            Clip clip = AudioSystem.getClip();
+            clip.open(in);
+            clickSoundClip = clip;
+        } catch (Exception e) {
+            clickSoundClip = null;
+        }
+    }
+
+    private void playClickSound() {
+        if (clickSoundClip != null) {
+            if (clickSoundClip.isRunning()) {
+                clickSoundClip.stop();
+            }
+            clickSoundClip.setFramePosition(0);
+            clickSoundClip.start();
+        }
+    }
+
+    public void mouseMoved(MouseEvent e) {
+        boolean hover = showingContinue && getPromptBounds().contains(e.getX(), e.getY());
+        if (hover != promptHovered) {
+            promptHovered = hover;
+            setCursor(Cursor.getPredefinedCursor(hover ? Cursor.HAND_CURSOR : Cursor.DEFAULT_CURSOR));
+            repaint();
+        }
     }
 
     @Override
@@ -312,6 +372,13 @@ public abstract class StoryScenePanel extends BaseScenePanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 StoryScenePanel.this.mouseClicked(e);
+            }
+        });
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                StoryScenePanel.this.mouseMoved(e);
             }
         });
     }
